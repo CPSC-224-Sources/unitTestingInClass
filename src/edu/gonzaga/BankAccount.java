@@ -34,6 +34,18 @@ public class BankAccount {
     }
 
     public void debit(Double spentFunds) {
+        /*
+        if(spentFunds < 0){
+            throw new IllegalArgumentException("Cannot have sub zero spent funds (Tahiti JIM!)");
+        }
+        */
         this.balance -= spentFunds;
     }
 }
+
+
+/*
+        if(newFunds < 0) {
+        throw new IllegalArgumentException("Cannot credit negative amounts.");
+        }
+ */
