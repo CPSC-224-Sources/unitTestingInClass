@@ -49,6 +49,11 @@ public class BankAccount {
     private String name;
 
     public BankAccount(Double startingBalance, String ownerName) {
+
+        if( startingBalance < 0 ) {
+            throw new IllegalArgumentException();
+        }
+
         this.balance = startingBalance;
         this.name = ownerName;
     }
@@ -70,7 +75,7 @@ public class BankAccount {
     }
 
     public String getName() {
-        return this.name + ".";
+        return this.name;
     }
 
     public void credit(Double newFunds) {

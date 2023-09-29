@@ -15,6 +15,71 @@ public class BankAccountTest {
     }
 
     @Test
+    void initialName() {
+        Double initialBal = 50.75;
+        String ownerName = "Jenny";
+        BankAccount ba = new BankAccount(initialBal, ownerName);
+        System.out.println(ba);
+        Assertions.assertEquals(ownerName, ba.getName());
+    }
+
+    @Test
+    void test_InitializeNegativeBalance() {
+        Double initialBal = -0.10;
+        String ownerName = "Jenny";
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new BankAccount(initialBal, ownerName);
+        });
+    }
+
+    @Test
+    void test_Credit_10() {
+        Double initialBal = 50.75;
+        Double creditAmt = 10.0;
+        Double expectedBal = 60.75;
+        String ownerName = "Jenny";
+        BankAccount ba = new BankAccount(initialBal, ownerName);
+
+        ba.credit(creditAmt);
+
+        Double actualBal = ba.getBalance();
+
+        Assertions.assertEquals(expectedBal, actualBal);
+    }
+
+    @Test
+    void test_Debit_15() {
+        Double initialBal = 50.75;
+        Double debitAmt = 15.0;
+        String ownerName = "Jenny";
+        BankAccount ba = new BankAccount(initialBal, ownerName);
+
+        ba.debit(debitAmt);
+
+        Double expectedBal = 50.75 - 15.0;  // ?????
+        Double actualBal = ba.getBalance();
+
+        Assertions.assertEquals(expectedBal, actualBal);
+    }
+
+    @Test
+    void test_Debit_015() {
+        Double initialBal = 50.75;
+        Double debitAmt = 0.15;
+        String ownerName = "Jenny";
+        BankAccount ba = new BankAccount(initialBal, ownerName);
+
+        ba.debit(debitAmt);
+
+        Double expectedBal = 50.75 - 0.15;
+        Double actualBal = ba.getBalance();
+
+        Assertions.assertEquals(expectedBal, actualBal);
+    }
+
+
+
+    @Test
     void test_CreateCredit() {
         Credit credit = new Credit(50.00);
         System.out.println(credit);
@@ -64,9 +129,6 @@ public class BankAccountTest {
         Double negativeAmount = -1.5;
         String ownerName = "Jenny";
         BankAccount ba = new BankAccount(initialBal, ownerName);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            ba.debit(negativeAmount);
-        });
     }
  */
 
